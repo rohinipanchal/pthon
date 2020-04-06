@@ -1,0 +1,64 @@
+import pandas as pd
+
+def readExcel():
+    xldata=pd.read_excel('emp data.xlsx')
+    df=pd.DataFrame(xldata)
+    print(df)
+    return df
+
+
+def displayBygender(df):
+    key=input("Enter the gender to be searched: ")
+    gender=df[df.gender==key]
+    print(gender)
+
+
+def employeeByprevexp(df):
+    key=int(input("Enter the prevexp above which result is to be displayed:"))
+    Aprevexp=df[df.A>key]
+    print(Aprevexp)
+    count=len(Aprevexp['A'])
+    print("\nCount is: ",count)
+
+    
+def minInsalbegin(df):
+    salbegin=df['salbegin']
+    minEC=min(salbegin)
+    print("\nMinimum price in salbegin are: ",minEC)
+
+
+def avgSalary(df):
+    sumOfSalary=sum(df['Salary'])
+    avg=sumOfSalary/(len(df['Salary']))
+    print("\nAverage Salary is: ",avg)
+
+    
+def sortByid(df):
+    df=df.sort_values(by='id')
+    print(df)
+    
+
+def updateSalry(df):
+    for i in range(len(df)):
+    df.loc[i,"Salary"]=(df.loc[i,'Salary']+(df.loc[i,'Salary']/10))
+    print(df)
+
+
+def sortByName(df):
+    df=df.sort_values(by='Name')
+    print(df)
+    
+
+
+def writeToExcel(df):
+    df.to_excel('emp data.xlsx') 
+        
+
+df=readExcel()
+
+#displayBygender(df)
+#employeeByprevexp(df)
+#minInsalbegin(df)
+#avgSalary(df)
+#sortByid(df)
+#updateSalary(df)
